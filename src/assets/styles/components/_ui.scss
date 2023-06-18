@@ -1,0 +1,44 @@
+.ui {
+  &__loader {
+    position: relative;
+    width: 100%;
+
+    &--wrapper {
+      font-size: rem(44);
+      height: 100vh;
+    }
+  }
+
+  &__spinner {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: absolute;
+
+    &::after {
+      animation: jcn-loader-back 1.5s linear infinite;
+      border: medium solid transparent;
+      border-bottom-color: red;
+      border-left-color: red;
+      border-radius: 50%;
+      content: ' ';
+      display: inline-block;
+      position: absolute;
+      height: 2em;
+      width: 2em;
+    }
+
+    &::before {
+      animation: jcn-loader 1.5s linear infinite;
+      border: medium solid transparent;
+      border-top-color: blue;
+      border-radius: 50%;
+      content: ' ';
+      display: inline-block;
+      position: absolute;
+      height: 2em;
+      width: 2em;
+    }
+  }
+}

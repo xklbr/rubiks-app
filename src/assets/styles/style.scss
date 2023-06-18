@@ -1,0 +1,16 @@
+// Tailwindcss
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Config
+@import 'modules/vars';
+@import 'modules/app';
+
+// Config modules
+@import 'modules/mixins';
+@import 'modules/typography';
+
+// Components
+@import 'components/animations';
+@import 'components/ui';

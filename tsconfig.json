@@ -1,0 +1,42 @@
+{
+  "extends": "./tsconfig.paths.json",
+  "compilerOptions": {
+    "target": "es6",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "sourceMap": true,
+    "module": "esnext",
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "baseUrl": "src",
+    "jsx": "react-jsx",
+    "isolatedModules": true,
+    "downlevelIteration": true
+  },
+  "include": [
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
+    "./src/**/*.jsx",
+    "./src/**/*.js",
+    "./config/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    ".husky",
+    ".storybook",
+    "build",
+    "coverage",
+    "public",
+    "./src/**/sagas.ts",
+    "./config/**/*.js"
+  ]
+}

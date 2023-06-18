@@ -1,0 +1,23 @@
+name: Pull Request Checks
+on:
+  push:
+    branches: main
+  pull_request:
+    branches-ignore: main
+
+jobs:
+  precommmit:
+    name: Precommit check
+    strategy:
+      matrix:
+        node-version: [16.x]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - name: Run Precommit
+        run: yarn precommit
