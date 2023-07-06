@@ -4,6 +4,8 @@ import { persistReducer } from 'redux-persist';
 import { FormStateMap, reducer as formReducer } from 'redux-form';
 import nav, { NavState } from 'modules/nav/reducer';
 import auth, { AuthState } from 'modules/auth/reducer';
+import users, { UsersState } from 'modules/users/reducer';
+import dashboard, { DashboardState } from 'modules/dashboard/reducer';
 
 import { AUTH_CLEAR_SESSION } from 'modules/auth/types';
 import { history } from './history';
@@ -14,6 +16,8 @@ export type ReducerType = {
   router: RouterState;
   nav: NavState;
   auth: AuthState;
+  users: UsersState;
+  dashboard: DashboardState;
 };
 
 const appReducer = combineReducers<ReducerType | undefined>({
@@ -24,6 +28,8 @@ const appReducer = combineReducers<ReducerType | undefined>({
   // app
   nav,
   auth: persistReducer(authPersistConfig, auth),
+  users,
+  dashboard,
 });
 
 // Actions to empty the reducer. i.e LOGOUT

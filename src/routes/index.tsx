@@ -3,6 +3,7 @@
 import { FC } from 'react';
 import { Route, RouteComponentProps, Switch } from 'react-router-dom';
 import { Store } from 'redux';
+
 import RoutesType from './interface';
 
 type RouteCustomProperties = {

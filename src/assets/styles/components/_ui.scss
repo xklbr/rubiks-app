@@ -41,4 +41,25 @@
       width: 2em;
     }
   }
+
+  &__toast {
+    border-radius: 25%;
+    text-align: center;
+
+    &--error {
+      background-color: #f43f5e;
+    }
+
+    &--success {
+      background-color: #10b981;
+    }
+  }
+
+  &__h-80 {
+    height: 80vh;
+  }
+
+  &__h-90 {
+    height: 90vh;
+  }
 }

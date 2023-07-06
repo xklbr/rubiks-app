@@ -1,3 +1,4 @@
+/* stylelint-disable selector-class-pattern */
 * {
   box-sizing: border-box;
   outline: 0;
@@ -17,4 +18,30 @@ body {
   font-family: $font-regular;
   font-size: 16px;
   height: 100%;
+}
+
+// Reset toastify styles
+.Toastify__toast-theme--light {
+  background: #374151;
+  color: #9ca3af;
+}
+
+.Toastify__close-button--light {
+  color: #d1d5db;
+}
+
+.Toastify__toast-icon {
+  align-items: center;
+  display: flex;
+  height: 30px;
+  margin-right: 10px;
+  width: 30px;
+}
+
+.Toastify__progress-bar--success {
+  background: #10b981;
+}
+
+.Toastify__toast--error {
+  background: #f43f5e;
 }

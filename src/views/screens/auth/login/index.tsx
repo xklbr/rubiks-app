@@ -1,8 +1,8 @@
-import AuthLayout from 'views/layouts/auth.layout';
+import AuthLayout from 'views/layouts/auth/auth.layout';
 import LoginForm from 'views/forms/auth/login';
 
 const AuthLoginPage = () => (
-  <AuthLayout headTitle="Login" title="Sign in to your account" dark>
+  <AuthLayout headTitle="Login" title="Login to your account" dark>
     <LoginForm />
   </AuthLayout>
 );

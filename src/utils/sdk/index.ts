@@ -10,22 +10,21 @@ const { REACT_APP_URL_SPEC, REACT_APP_API_BASE_URL } = process.env;
 type SDKType = {
   _api: any;
   _fetch: typeof window.fetch;
-  _token: string | boolean | undefined;
-  _error: string | undefined | unknown;
-  setToken: (argument: string | undefined) => void;
+  _token: string | boolean | null;
+  _error: string | null | unknown;
+  setToken: (argument: string | null) => void;
   getApi: () => any;
   init: () => void;
   _requestInteceptor: (request: any) => void;
-  _responseInterceptor: (response: any) => void;
   _buildError: (argument: any) => any;
 };
 
 const SDK: SDKType = {
-  _api: undefined,
+  _api: null,
   _fetch: window.fetch,
   _token: false,
-  _error: undefined,
-  setToken: (token: string | undefined) => {
+  _error: null,
+  setToken: (token: string | null) => {
     SDK._token = token;
   },
   getApi: () => {
@@ -36,19 +35,17 @@ const SDK: SDKType = {
     if (!SDK._api) {
       try {
         Swagger.prototype.execute = (...rest: any[]) =>
-          Swagger.execute.apply(this, rest).catch((error: Error) => {
-            throw SDK._buildError(error);
+          Reflect.apply(Swagger.execute, this, rest).catch((error: Error) => {
+            SDK._error = error;
           });
         const client = await new Swagger({
           url: REACT_APP_URL_SPEC,
           usePromise: true,
           requestInterceptor: SDK._requestInteceptor,
-          responseInterceptor: SDK._responseInterceptor,
           userFetch: SDK._fetch,
-          skipNormalization: true,
         });
         client.spec.servers[0] = { url: REACT_APP_API_BASE_URL };
-        SDK._error = undefined;
+        SDK._error = null;
         SDK._api = client.apis;
       } catch (error) {
         SDK._error = error;
@@ -62,7 +59,6 @@ const SDK: SDKType = {
       delete request.headers.Authorization;
     }
   },
-  _responseInterceptor: (response) => {},
   _buildError: (error) => {
     if (!error || !error.response) {
       const message = ['Service not available. Please try again.'];

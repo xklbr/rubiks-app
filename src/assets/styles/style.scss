@@ -1,7 +1,13 @@
+/* stylelint-disable no-invalid-position-at-import-rule */
+/* stylelint-disable scss/at-rule-no-unknown */
+
 // Tailwindcss
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+// Toastify
+@import '~react-toastify/dist/ReactToastify.css';
 
 // Config
 @import 'modules/vars';

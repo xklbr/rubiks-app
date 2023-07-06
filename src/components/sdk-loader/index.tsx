@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 /* eslint-disable import/no-duplicates */
 // @ts-nocheck
 import { useEffect, useState, FC, PropsWithChildren } from 'react';
@@ -19,7 +18,8 @@ const SdkLoader: FC<PropsWithChildren<{}>> = ({ children }) => {
     })();
   }, [token]);
 
-  if (!isReady) return;
+  if (!isReady) return null;
+
   return children;
 };
 

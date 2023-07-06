@@ -1,22 +1,9 @@
 import { FC } from 'react';
-import classnames from 'classnames';
 import { LoadingComponentProps } from 'react-loadable';
 
-type ScreenLoadingProperties = {
-  isInitial?: boolean;
-};
-
-const ScreenLoading: FC<
-  Partial<LoadingComponentProps> & ScreenLoadingProperties
-> = ({ isInitial = true }) => (
-  <div
-    data-testid="test__screen-loader"
-    className={classnames(
-      'ui__loader d-flex justify-content-center align-items-center',
-      { 'ui__loader--wrapper': isInitial },
-    )}
-  >
-    <div className="ui__spinner" data-testid="test__spinner" />
+const ScreenLoading: FC<Partial<LoadingComponentProps>> = () => (
+  <div className="absolute right-1/2 bottom-1/2  transform translate-x-1/2 translate-y-1/2 ">
+    <div className="border-t-transparent border-solid animate-spin  rounded-full border-gray-400 border-4 h-20 w-20" />
   </div>
 );
 

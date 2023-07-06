@@ -6,8 +6,9 @@ import { required, email } from 'redux-form-validators';
 
 import { isAuthLoading } from 'modules/auth/selectors';
 
-import TextField from 'views/components/fields/text-field';
+import TextField from 'components/fields/text-field';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
+import Button from 'components/button';
 
 const LoginForm: FC<InjectedFormProps<{}>> = ({
   handleSubmit,
@@ -75,13 +76,13 @@ const LoginForm: FC<InjectedFormProps<{}>> = ({
           </div>
         </div>
         <div>
-          <button
-            type="submit"
+          <Button
+            render="Login"
+            buttonStyle="primary"
+            size="xl"
+            submit
             disabled={loading || invalid || pristine || submitting}
-            className="flex w-full justify-center rounded-md bg-gray-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600"
-          >
-            Sign in
-          </button>
+          />
         </div>
       </Form>
     </div>

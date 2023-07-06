@@ -1,9 +1,14 @@
 import { put, takeLatest, call, StrictEffect } from 'redux-saga/effects';
+import { push } from 'connected-react-router';
 import { Action } from 'redux-actions';
 import { ReduxFormPayload } from 'redux-saga-routines';
 import { SubmissionError } from 'redux-form';
 
 import { SDK } from 'utils/sdk';
+
+import ROLE from 'utils/enums/roles';
+import STATUS from 'utils/enums/status';
+
 import { authLogin, authLogout, clearSession } from './actions';
 
 export function* authLoginSaga({
@@ -17,10 +22,14 @@ export function* authLoginSaga({
       {},
       { requestBody },
     );
-    // eslint-disable-next-line no-console
-    console.log('requestBody', requestBody);
-    yield call([SDK, 'setToken'], body.accessToken);
-    yield put(authLogin.success(body.accessToken));
+    if (body) {
+      const { roles, status, accessToken } = body;
+      yield call([SDK, 'setToken'], accessToken);
+      yield put(authLogin.success(accessToken));
+      yield roles.includes(ROLE.ADMIN) && status === STATUS.ACTIVE
+        ? put(push('/admin/dashboard'))
+        : put(push('/'));
+    }
   } catch (error: any) {
     yield put(
       authLogin.failure(
