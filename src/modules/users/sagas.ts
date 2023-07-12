@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { put, takeLatest, call, StrictEffect } from 'redux-saga/effects';
 import { Action } from 'redux-actions';
 import { ReduxFormPayload } from 'redux-saga-routines';
@@ -8,7 +9,13 @@ import { SDK } from 'utils/sdk';
 import { messageError, messageSuccess } from 'components/toast-messages';
 import { MESSAGES } from 'utils/messages';
 
-import { disabledUser, listUsers, retrieveUser, updateUser } from './actions';
+import {
+  createUser,
+  disabledUser,
+  listUsers,
+  retrieveUser,
+  updateUser,
+} from './actions';
 
 export function* listUsersSaga(): Generator<StrictEffect, void, unknown> {
   try {
@@ -41,14 +48,37 @@ export function* retrieveUserSaga({
   }
 }
 
+export function* createUserSaga({
+  payload: { values },
+}: any): Generator<StrictEffect> {
+  try {
+    yield put(createUser.request());
+    const api: any = yield call([SDK, 'getApi']);
+    const { body }: any = yield call(
+      [api.users, 'newUser'],
+      {},
+      {
+        requestBody: values,
+      },
+    );
+
+    yield put(createUser.success(body));
+    messageSuccess(MESSAGES.USER_CREATE);
+  } catch (error: any) {
+    yield put(createUser.failure(error));
+    messageError(error?.response?.body?.message);
+  } finally {
+    yield put(createUser.fulfill());
+  }
+}
+
 export function* updateUserSaga({
   payload: { values: requestBody },
 }: Action<ReduxFormPayload<any, any>>): Generator<StrictEffect> {
   try {
-    // eslint-disable-next-line no-param-reassign
     delete requestBody.createdAt;
-    // eslint-disable-next-line no-param-reassign
     delete requestBody.updatedAt;
+    delete requestBody.deletedAt;
     yield put(updateUser.request());
     const api: any = yield call([SDK, 'getApi']);
     const body: any = yield call(
@@ -93,6 +123,7 @@ export function* deleteUserSaga({
 export default function* usersWatch(): Generator<StrictEffect> {
   yield takeLatest(listUsers.TRIGGER, listUsersSaga);
   yield takeLatest(retrieveUser.TRIGGER, retrieveUserSaga);
+  yield takeLatest(createUser.TRIGGER, createUserSaga);
   yield takeLatest(updateUser.TRIGGER, updateUserSaga);
   yield takeLatest(disabledUser.TRIGGER, deleteUserSaga);
 }

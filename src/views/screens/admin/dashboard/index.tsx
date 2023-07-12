@@ -6,13 +6,11 @@ import {
   getDashboardItems,
   isDashboardLoading,
 } from 'modules/dashboard/selectors';
+import ScreenLoading from 'views/ui/screen-loading';
 
 const AdminPage = () => {
   const loading = useSelector(isDashboardLoading);
   const dashboardUsersStats = useSelector(getDashboardItems);
-
-  // eslint-disable-next-line no-console
-  console.log(loading);
 
   return (
     <AdminDashboardLayout headTitle="Dashboard">
@@ -20,7 +18,11 @@ const AdminPage = () => {
         <h1 className="text-3xl font-semibold leading-6 text-gray-200 mb-10">
           Dashboard
         </h1>
-        <CardReport data={dashboardUsersStats} title="Users last 30 days" />
+        {loading ? (
+          <ScreenLoading />
+        ) : (
+          <CardReport data={dashboardUsersStats} title="Users last 30 days" />
+        )}
       </div>
     </AdminDashboardLayout>
   );

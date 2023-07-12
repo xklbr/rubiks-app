@@ -3,11 +3,11 @@ import { FC, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Form, InjectedFormProps } from 'redux-form';
 import { required, email } from 'redux-form-validators';
+import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 
 import { isAuthLoading } from 'modules/auth/selectors';
 
 import TextField from 'components/fields/text-field';
-import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 import Button from 'components/button';
 
 const LoginForm: FC<InjectedFormProps<{}>> = ({
@@ -68,7 +68,7 @@ const LoginForm: FC<InjectedFormProps<{}>> = ({
               id="password"
               type={showPassword ? 'text' : 'password'}
               name="password"
-              placeholder="123*yourpassword"
+              placeholder="123*Password"
               validate={[required()]}
               showMessages={false}
               className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-gray-500 sm:text-sm sm:leading-6"

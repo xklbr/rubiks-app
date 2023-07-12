@@ -7,6 +7,7 @@ import {
   updateUser,
   disabledUser,
   toggleModalDisabledUser,
+  createUser,
 } from './actions';
 
 export type UsersState = {
@@ -34,6 +35,7 @@ const reducer = produce((draft: Draft<UsersState>, { type, payload }) => {
     // TRIGGER
     case listUsers.TRIGGER:
     case retrieveUser.TRIGGER:
+    case createUser.TRIGGER:
     case updateUser.TRIGGER:
       draft.loading = true;
       draft.error = null;
@@ -49,6 +51,7 @@ const reducer = produce((draft: Draft<UsersState>, { type, payload }) => {
       draft.items = payload;
       break;
     case retrieveUser.SUCCESS:
+    case createUser.SUCCESS:
     case updateUser.SUCCESS:
       draft.item = payload;
       break;
@@ -60,6 +63,7 @@ const reducer = produce((draft: Draft<UsersState>, { type, payload }) => {
     // FAILURE
     case listUsers.FAILURE:
     case retrieveUser.FAILURE:
+    case createUser.FAILURE:
     case updateUser.FAILURE:
       draft.error = payload;
       break;
@@ -71,6 +75,7 @@ const reducer = produce((draft: Draft<UsersState>, { type, payload }) => {
     // FULFILL
     case listUsers.FULFILL:
     case retrieveUser.FULFILL:
+    case createUser.FULFILL:
     case updateUser.FULFILL:
       draft.loading = false;
       break;

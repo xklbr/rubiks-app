@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 
 type ButtonProperties = {
   submit?: boolean;
@@ -17,6 +18,8 @@ type ButtonProperties = {
   disabled?: boolean;
   onClick?: () => void;
   ref?: any;
+  link?: boolean;
+  url?: any;
 };
 
 const sizes = {
@@ -49,10 +52,16 @@ const Button = ({
   buttonStyle = 'text',
   onClick,
   ref,
+  link,
+  url,
 }: ButtonProperties) => {
   const baseClass = `text-sm font-semibold ${sizes[size]} ${styleButton[buttonStyle]} ${variant}`;
 
-  return (
+  return link ? (
+    <Link to={url} className={baseClass}>
+      {render}
+    </Link>
+  ) : (
     <button
       type={submit ? 'submit' : 'button'}
       className={baseClass}

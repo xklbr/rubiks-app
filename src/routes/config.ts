@@ -31,6 +31,12 @@ const AdminUsers = Loadable({
   loading: ScreenLoading,
 });
 
+const AdminUserNew = Loadable({
+  loader: () => import('views/screens/admin/users/new'),
+  // @ts-ignore
+  loading: ScreenLoading,
+});
+
 const AdminUserEdit = Loadable({
   loader: () => import('views/screens/admin/users/edit'),
   // @ts-ignore
@@ -68,6 +74,12 @@ const routes: RoutesType[] = [
     privated: true,
     exact: true,
     actions: [listUsers],
+  },
+  {
+    path: '/admin/users/new',
+    component: AdminUserNew,
+    privated: true,
+    exact: true,
   },
   {
     path: '/admin/users/:id/edit',

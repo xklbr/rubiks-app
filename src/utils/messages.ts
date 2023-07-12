@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/prefer-default-export
 export const MESSAGES = {
+  USER_CREATE: 'User created successfully.',
   USER_UPDATE: 'User updated successfully.',
   USER_DISABLED: 'User deleted successfully.',
   USER_DELETE_ALERT:

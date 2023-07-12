@@ -1,4 +1,4 @@
-import { ChartPieIcon, HomeIcon, UsersIcon } from '@heroicons/react/24/outline';
+import { HomeIcon, UsersIcon } from '@heroicons/react/24/outline';
 
 export const navigation = [
   { name: 'Dashboard', to: '/admin/dashboard', icon: HomeIcon },
@@ -7,11 +7,11 @@ export const navigation = [
     to: '/admin/users',
     icon: UsersIcon,
   },
-  {
-    name: 'Reports',
-    to: '/admin/dashboard/reports',
-    icon: ChartPieIcon,
-  },
+  // {
+  //   name: 'Reports',
+  //   to: '/admin/dashboard/reports',
+  //   icon: ChartPieIcon,
+  // },
 ];
 
 export const userNavigation = [

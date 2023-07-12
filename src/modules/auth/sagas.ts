@@ -46,6 +46,9 @@ export function* authLogoutSaga(): Generator<StrictEffect> {
     yield put(authLogout.request());
     yield put(clearSession());
     yield put(authLogout.success());
+    localStorage.clear();
+    sessionStorage.clear();
+    yield put(push('/'));
   } catch (error) {
     yield put(authLogout.failure(error));
   } finally {

@@ -47,6 +47,8 @@ const TableList: FC<TableListProperties> = ({
             render={buttonTitle}
             size="md"
             variant="py-2"
+            link
+            url="/admin/users/new"
           />
         </div>
       </div>

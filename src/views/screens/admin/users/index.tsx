@@ -14,6 +14,7 @@ import EmptyState from 'components/empty-state';
 import EmptyStateUserImage from 'assets/images/empty-state-user.svg';
 
 import { UserType } from 'types/user';
+import ScreenLoading from 'views/ui/screen-loading';
 
 const UsersPage = () => {
   const loading = useSelector(isUserLoading);
@@ -62,7 +63,11 @@ const UsersPage = () => {
   return (
     <>
       <AdminDashboardLayout headTitle="Users">
-        {!loading && users.length === 0 ? (
+        {loading ? (
+          <div className="h-screen">
+            <ScreenLoading />
+          </div>
+        ) : users.length === 0 ? (
           <EmptyState
             image={EmptyStateUserImage}
             title="Users not found"

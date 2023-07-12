@@ -1,6 +1,6 @@
 const STATUS = {
   ACTIVE: 'Active',
-  INACTIVE: 'Inactive',
+  DISABLED: 'Disabled',
   DELETED: 'Deleted',
   PENDING: 'Pending',
   SUSPENDED: 'Suspended',
